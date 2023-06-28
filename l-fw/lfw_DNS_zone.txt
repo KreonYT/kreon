@@ -1,0 +1,19 @@
+$TTL 604800
+@	IN	SOA	skill.wsr.	root.skill.wsr. (
+				1			; Serial
+				604800		; Refresh
+				86400		; Retry
+				2419200	; Expire
+				604800 )	; Negative Cache TTL
+
+@	IN	NS	l-fw.skill.wsr.
+l-fw                    A       172.16.1.254
+ns                      CNAME   l-fw
+r-fw                    A       172.16.2.254
+ntp                     CNAME   r-fw
+web1                    CNAME   l-srv
+web2                    CNAME   r-srv
+www                     A       172.16.1.254
+                        A       172.16.2.254
+site2                   A       172.16.1.254
+                        A       172.16.2.254

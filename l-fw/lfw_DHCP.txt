@@ -1,0 +1,33 @@
+option domain-name "skill.wsr";
+option domain-name-servers 172.16.1.254;
+
+default-lease-time 21600;
+max-lease-time 21600;
+
+ddns-updates on;
+ddns-update-style interim;
+update-static-leases on;
+authoritative;
+
+zone skill.wsr. {primary 127.0.0.1;}
+zone 16.172.in-addr.arpa. {primary 127.0.0.1;}
+
+subnet 172.16.1.0 netmask 255.255.255.0 {
+  range 172.16.1.50 172.16.1.100;
+  option routers 172.16.1.254;
+}
+
+subnet 172.16.2.0 netmask 255.255.255.0 {
+  range 172.16.2.50 172.16.2.100;
+  option routers 172.16.2.254;
+}
+
+subnet 10.1.1.0 netmask 255.255.255.252{}
+subnet 10.1.1.4 netmask 255.255.255.252{}
+
+host fantasia {
+  hardware ethernet 4E:27:36:62:B9:47;
+  fixed-address 172.16.2.25;
+  option routers 172.16.2.254;
+
+}

@@ -1,0 +1,23 @@
+server { listen 80 default_server; server_name _: return 403; }
+
+upstream pr {
+  server web1.skill.wsr;
+  server web2.skill.wsr;
+}
+
+
+server {
+  listen 443 ssl;
+  server_name www.skill.wsr;
+  ssl_certificate     /root/ca/www.crt;
+  ssl_certificate_key /root/ca/www.key;
+  location { proxy_pass http://pr/; }
+}
+
+server {
+  listen 443 ssl;
+  server_name site2.skill.wsr;
+  ssl_certificate     /root/ca/site2.crt;
+  ssl_certificate_key /root/ca/site2.key;
+  location { proxy_pass http://pr/; }
+}

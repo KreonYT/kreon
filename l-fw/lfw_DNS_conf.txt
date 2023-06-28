@@ -1,0 +1,29 @@
+#/etc/bind/named.conf.options file
+options {
+	directory "/var/cache/bind";   
+	     forwarders {8.8.8.8;};
+	
+	auth-nxdomain no;
+	dnssec-validation no;
+        listen-on { any;};
+        listen-on-v6 { any; };
+        allow-transfer { any; };
+        allow-recursion { any; };
+        recursion yes;
+};
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+#/etc/bind/named.conf.default-zones file
+
+zone "16.172.in-addr.arpa" {
+        type master;
+        file "/etc/bind/db.172";
+        allow-update {127.0.0.1;};
+};
+
+zone "skill.wsr" {
+        type master;
+        file "/etc/bind/skill.wsr";
+        allow-update {127.0.0.1;};
+};
